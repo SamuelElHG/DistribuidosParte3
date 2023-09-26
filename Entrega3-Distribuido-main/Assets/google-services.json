@@ -1,22 +1,22 @@
 {
   "project_info": {
-    "project_number": "368867686549",
-    "firebase_url": "https://entrega3-distribuidos-default-rtdb.firebaseio.com",
-    "project_id": "entrega3-distribuidos",
-    "storage_bucket": "entrega3-distribuidos.appspot.com"
+    "project_number": "920797719817",
+    "firebase_url": "https://distemasdistribuidos-86909-default-rtdb.firebaseio.com",
+    "project_id": "distemasdistribuidos-86909",
+    "storage_bucket": "distemasdistribuidos-86909.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:368867686549:android:c13101e81d4abfb23c839c",
+        "mobilesdk_app_id": "1:920797719817:android:d7263c9dc15ebd65eaf7d8",
         "android_client_info": {
-          "package_name": "com.DefaultCompany.Entrega3Distribuidos"
+          "package_name": "com.sam.distribuidos"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBZhPJ8S8bRu_1f2bf16VpIjpQH3VkmPeQ"
+          "current_key": "AIzaSyAgFfmJDlkLUx5bV00UM0PSkm2Tb43zRZk"
         }
       ],
       "services": {
