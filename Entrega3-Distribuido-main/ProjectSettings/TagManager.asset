@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - UIController
+  - BallPicker
+  - Balls
   layers:
   - Default
   - TransparentFX

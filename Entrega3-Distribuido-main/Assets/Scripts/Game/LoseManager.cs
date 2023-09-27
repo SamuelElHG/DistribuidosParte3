@@ -12,13 +12,16 @@ public class LoseManager : MonoBehaviour
     [SerializeField] Transform ballInitialPosition;
     [SerializeField] GameObject menuUI;
     [SerializeField] TMP_Text highScoreText;
+    [SerializeField] TMP_Text scoretext;
+
     [SerializeField] UIController scoreText;
     [SerializeField] AuthManager authManager;
+    [SerializeField] GameObject objectsOfGame;
     public UnityEvent updateAuth;
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //gameover
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Balls"))
         {
             score = scoreManager.score;
             if (score > highScore)
@@ -27,19 +30,23 @@ public class LoseManager : MonoBehaviour
                 highScoreText.text = highScore.ToString();
                 updateAuth.Invoke();
             }
+            scoretext.text = score.ToString();
             score = 0;
             ReloadScene();
+            gameover();
         }
     }
 
     private void ReloadScene()
     {
         scoreManager.DeleteScore();
-        scoreText.scoreText.text = "0";
-        Jiggle.Instance.GetComponent<Transform>().position = ballInitialPosition.position;
-        Jiggle.Instance.rb.gravityScale = 0f;
-        Jiggle.Instance.rb.velocity = Vector2.zero;
+      //  scoreText.scoreText.text = "0";
+
         menuUI.SetActive(true);
     }
+    private void gameover()
+    {
 
+        objectsOfGame.SetActive(false);
+    }
 }

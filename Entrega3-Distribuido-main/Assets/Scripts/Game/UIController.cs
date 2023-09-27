@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [Header("Game UI")]
-    [SerializeField] GameObject ball;
+   // [SerializeField] GameObject ball;
     public TextMeshProUGUI scoreText;
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] GameObject gameUI;
+    [SerializeField] GameObject gameplay;
 
     [Header("Menu")]
     [SerializeField] GameObject menuUI;
@@ -32,27 +33,23 @@ public class UIController : MonoBehaviour
     {
         gameUI.SetActive(true);
         menuUI.SetActive(false);       
-        Invoke("ActiveGravity", 0.5f);
+        gameplay.SetActive(true);
     }
 
     public void ShowScoreboard()
     {
         scoreboardUI.SetActive(true);
         menuUI.SetActive(false);
-        ball.SetActive(false);
+        //ball.SetActive(false);
     }
 
     public void BackToMenu()
     {
         menuUI.SetActive(true);
-        ball.SetActive(true);
+        //ball.SetActive(true);
         scoreboardUI.SetActive(false);
     }
 
-    void ActiveGravity()
-    {
-        Jiggle.Instance.rb.gravityScale = 1.0f;
-    }
 
 
 }

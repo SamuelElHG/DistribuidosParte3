@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore()
     {
         score += 1;
+        Debug.Log("this is working");
     }
 
     public void DeleteScore()

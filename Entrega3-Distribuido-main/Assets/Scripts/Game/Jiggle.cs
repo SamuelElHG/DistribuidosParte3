@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,7 @@ public class Jiggle : MonoBehaviour
     public UnityEvent scoreIncreasser;
 
 
-    private void Awake()
+    private void Awake() //game controller
     {
         if (Instance == null)
         {
@@ -50,4 +51,12 @@ public class Jiggle : MonoBehaviour
         rb.AddForce(new Vector2(Random.Range(30f,100f), jumpForce), ForceMode2D.Force);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("BallPicker"))
+        {
+            scoreIncreasser.Invoke();
+            Destroy(gameObject);
+        }
+    }
 }
