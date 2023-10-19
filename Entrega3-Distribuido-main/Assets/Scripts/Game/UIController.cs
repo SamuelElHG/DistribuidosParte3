@@ -19,6 +19,12 @@ public class UIController : MonoBehaviour
     [Header("Scoreboard")]
     [SerializeField] GameObject scoreboardUI;
 
+    [Header("friends")]
+    [SerializeField] GameObject friendsUI;
+
+    [Header("conected")]
+    [SerializeField] GameObject connectedUI;
+
     private void Start()
     {
         scoreManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
@@ -48,8 +54,21 @@ public class UIController : MonoBehaviour
         menuUI.SetActive(true);
         //ball.SetActive(true);
         scoreboardUI.SetActive(false);
+        connectedUI.SetActive(false);
+        friendsUI.SetActive(false);
     }
-
+    public void ShowConnected()
+    {
+        connectedUI.SetActive(true);
+        friendsUI.SetActive(false);
+        //ball.SetActive(false);
+    }
+    public void ShowFriends()
+    {
+        connectedUI.SetActive(false);
+        friendsUI.SetActive(true);
+        //ball.SetActive(false);
+    }
 
 
 }
