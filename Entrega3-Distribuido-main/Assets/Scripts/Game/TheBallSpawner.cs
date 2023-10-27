@@ -17,7 +17,7 @@ public class TheBallSpawner : MonoBehaviour
     IEnumerator spawnBalls()
     {
         Instantiate(theballs, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(Random.RandomRange(2, 3));
+        yield return new WaitForSeconds(Random.Range(2, 3));
         StartCoroutine(spawnBalls());
     }
 }

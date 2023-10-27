@@ -10,6 +10,8 @@ using System.Linq;
 
 public class AuthManager : MonoBehaviour
 {
+    FriendsController friendsController;
+
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -50,14 +52,17 @@ public class AuthManager : MonoBehaviour
 
     private void Awake()
     {
-
-
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             dependencyStatus = task.Result;
             if (dependencyStatus == DependencyStatus.Available) InitializeFirebase();
             else print($"No se pueden resolver todas las dependencias de Firebase: {dependencyStatus}");
         });
+    }
+
+    private void Start()
+    {
+        StartCoroutine(GetFriendController());
     }
 
     void InitializeFirebase()
@@ -163,7 +168,7 @@ public class AuthManager : MonoBehaviour
             user = LoginTask.Result.User;
             Debug.LogFormat("Usuario iniciado excitosamente: {0} ({1})", user.DisplayName, user.Email);
             warningLoginText.text = "";
-
+            friendsController.GetIDGame(user.UserId);
             StartCoroutine(LoadData());
 
             yield return new WaitForSeconds(1);
@@ -236,10 +241,17 @@ public class AuthManager : MonoBehaviour
                         DBTask = dbReference.Child("users").Child(user.UserId).Child("score").SetValueAsync(0.ToString());
                         UIManager.instance.LoginScreen();
                         warningRegisterText.text = "";
+                        friendsController.AddNewUser(user.UserId, username);
                     }
                 }
             }
         }
+    }
+
+    IEnumerator GetFriendController()
+    {
+        yield return new WaitForSeconds(1);
+        friendsController = (FriendsController)FindObjectOfType(typeof(FriendsController));
     }
 
     IEnumerator Score(int score)
