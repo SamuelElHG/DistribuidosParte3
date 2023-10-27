@@ -43,7 +43,7 @@ namespace ServerController{
 
         public bool IsSignIn { get => isSignIn; }
 
-        public void UpdateServerProfile(TMP_InputField profileUserName)
+        public void UpdateServerProfile(TMP_Text profileUserName)
         {
             if (isSinged)
             {

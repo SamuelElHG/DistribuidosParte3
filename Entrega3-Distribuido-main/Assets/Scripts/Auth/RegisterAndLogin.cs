@@ -7,7 +7,7 @@ using TMPro;
 public class RegisterAndLogin : MonoBehaviour
 {
     ServerController.FirebaseUser firebaseUser;
-    [SerializeField] TMP_InputField profileUserName;
+    [SerializeField] TMP_Text profileUserName;
 
     [Header("Login")]
     [SerializeField] TMP_InputField emailLogin;
