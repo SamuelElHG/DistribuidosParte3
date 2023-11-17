@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NetworkController : MonoBehaviour
 {
@@ -13,7 +15,9 @@ public class NetworkController : MonoBehaviour
 
     public string Username;
 
-
+    [SerializeField] InputField infield;
+    [SerializeField] Text textico;
+    [SerializeField] TMP_Text tmtext;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +50,7 @@ public class NetworkController : MonoBehaviour
             JsonData jsonData = JsonUtility.FromJson<JsonData>(json);
             GameObject.Find("GameController").GetComponent<GameController>().NewPlayer(jsonData.Id,jsonData.Username);
         });
-
+        tmtext.text = Username;
     }
 
     private void Disconnect(string obj)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -12,11 +13,20 @@ public class GameController : MonoBehaviour
     private Transform PlayersContainer;
     [SerializeField]
     private Transform CoinsContainer;
+    private Transform EnemyContainer;
+
 
     [SerializeField]
     private GameObject PlayerPrefab;
     [SerializeField]
     private GameObject CoinPrefab;
+    [SerializeField]
+    private GameObject EnemyPrefab;
+
+    [SerializeField] TMP_Text playerNumber;
+    int playerNumberIndex = 0;
+    [SerializeField] TMP_Text coinNumber;
+    int coinNumberIndex = 0;
 
     private GameState State;
     private Dictionary<string, Transform> PlayersToRender;
@@ -33,6 +43,8 @@ public class GameController : MonoBehaviour
         foreach (Player player in state.Players)
         {
             InstantiatePlayer(player);
+            playerNumberIndex++;
+            playerNumber.text = "players connected: "+ playerNumberIndex.ToString();
         }
 
         var Socket = NetworkController._Instance.Socket;
@@ -104,6 +116,8 @@ public class GameController : MonoBehaviour
 
             foreach (var coinItem in coinsToDelete)
             {
+                coinNumberIndex++;
+                coinNumber.text = "coins collected: "+ coinNumberIndex.ToString();
                 Destroy(coinItem.Value.gameObject);
                 CoinsToRender.Remove(coinItem.Key);
             }
@@ -118,9 +132,6 @@ public class GameController : MonoBehaviour
 
         CoinsToRender[coin.Id] = coinGameObject.transform;
     }
-
-
-
 
 }
 
