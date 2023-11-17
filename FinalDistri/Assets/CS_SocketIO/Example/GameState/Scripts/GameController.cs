@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
     int playerNumberIndex = 0;
     [SerializeField] TMP_Text coinNumber;
     int coinNumberIndex = 0;
+
+    [SerializeField] Material playerMaterial;
 
     private GameState State;
     private Dictionary<string, Transform> PlayersToRender;
@@ -117,7 +120,10 @@ public class GameController : MonoBehaviour
             foreach (var coinItem in coinsToDelete)
             {
                 coinNumberIndex++;
+                
                 coinNumber.text = "coins collected: "+ coinNumberIndex.ToString();
+
+                
                 Destroy(coinItem.Value.gameObject);
                 CoinsToRender.Remove(coinItem.Key);
             }
@@ -127,6 +133,8 @@ public class GameController : MonoBehaviour
     private void InstantiateCoin(Coin coin)
     {
         GameObject coinGameObject = Instantiate(CoinPrefab, CoinsContainer);
+        coinGameObject.GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+
         coinGameObject.transform.position = new Vector2(coin.x, coin.y);
         coinGameObject.GetComponent<GameCoin>().Id = coin.Id;
 
